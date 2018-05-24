@@ -4,7 +4,7 @@
 
 **Version**:      [1.0.0](#v100)  
 **Author**:       Chimera.Zen  
-**Link**:         https://github.com/ChimeraZen/AfterShockCRS
+**Link**:         https://github.com/ChimeraZen/react-vigenere-cipher
 
 **Copyright**:    Copyright (c) 2018, Chimera.Zen  
 **License**:      http://www.gnu.org/licenses/old-licenses/gpl-2.0.html  
