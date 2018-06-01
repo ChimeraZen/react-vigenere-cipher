@@ -8,69 +8,62 @@ body {
 }
 
 #react-vigenere-cipher {
+  position:relative;
   display: flex;
   flex-direction: column;
-  min-width: 250px;
-  max-width: 500px;
-  max-height: 800px;
-  margin: auto;
+  max-width: 502px;
   font-family: 'Nunito', sans-serif;  // Font family
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-right: 1px solid #4ea5e3;
+  border-bottom: 1px solid #4ea5e3;
+  border-left: 1px solid #4ea5e3;
   
-  /* Header Styles */
+  /* Header */
   .header {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     h2 {
-      margin: auto;
+      text-align: center;
     }
   }
   
-  /* Option panel styles */
+  /* App Options */
   .app-options {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    
     i {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 2rem;
-      height: 2rem;
+      width: 2.05rem;
+      height: 2.05rem;
+      margin-left: auto;
       cursor: pointer;
-      transition: all .1s ease-in;
+      transition: all .3s ease-out;
+      
       &:hover {
-        transition: all .25s ease-in;
+        color: #FFF;
+        background: #4ea5e3;
+        transition: all .3s ease-out;
       }
     }
+    
     .panel {
-      position: absolute;
-      top: 2rem;
-      right: 0;
-      width: 200px;
+      display: flex;
+      flex-direction: column;
       max-height: 0px;
       overflow: hidden;
-      box-shadow: -1px 2px 5px -1px rgba(0,0,0,0.75);
-        transition: max-height .5s cubic-bezier(0.000, -0.600, 0.885, 0.120), 
-                    background .3s ease-out,
-                    color .3s ease-out;
+      border-left: 5px solid #4ea5e3;
+      background: #FFF;
+      box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.75);
+      transition: max-height .25s ease-in-out;
+      
       li {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        padding: 3px 5px;
-        text-transform: uppercase;
-        span {
-          font-weight: bold;
-        }
+        width: 150px;
+        padding: 3px;
       }
-      
-      /* This can be added to Zen Design */
       .input-slider {
         position: relative;
         display: inline-flex;
@@ -81,260 +74,175 @@ body {
         font-size: 10px;
         font-weight: bold;
         cursor: pointer;
-        border-radius: 50px;
+        border-radius: 50px; 
+        background: #333;
+        
         .input-on {
+          color: #26ca28;
           padding-top: 1px;
-          user-select: none;
+          user-select: none; 
         }
+        
         .input-off {
+          color: #ff1919;
           padding-top: 1px;
-          user-select: none;
+          user-select: none; 
         }
+        
         .input-slider-bar {
           position: absolute;
           display: inline-block;
+          left: 5%; 
           width: 36px;
           height: 15px;
           border-radius: 50px;
           transition: all .1s ease-out;
           z-index: 1;
-          left: 5%;
+          background: #ddd;
           &.on {
+            background: #26ca28;
             left: 54%;
-            transition: all .25s ease-out;
+            transition: all .25s ease-out; 
           }
         }
       }
     }
+    
     &.expand {
+      i {
+        color: #FFF;
+        background: #4ea5e3;
+        transition: all .3s ease-out;
+      }
+      
       .panel {
-        max-height: 1000px;
-        transition: max-height .5s cubic-bezier(0.125, 0.920, 1.000, 1.650), 
-                    background .3s ease-out,
-                    color .3s ease-out;
-        >div {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 3px 5px;
-        }
+        max-height: 500px;
+        transition: max-height .5s ease-in-out;
+      }
+    }
+    
+    ul {
+      list-style-type: none;
+    }
+  }
+  
+  /* Mode Styles */
+  .mode {
+    display: flex;
+    
+    span {
+      width: stretch;
+      color: #333;
+      padding: 10px 0;
+      text-align: center;
+      cursor: pointer;
+      border-top: 1px solid #4ea5e3;
+      border-bottom: 1px solid #4ea5e3;
+      background: #FFF;
+      transition: background .25s ease-in-out;
+      
+      &.active {
+        color: #FFF;
+        background: #3c8bc2;
+        transition: background .25s ease-in-out;
+      }
+      
+      &:hover {
+        color: #FFF;
+        background: #4ea5e3;
+        transition: background .25s ease-in-out;
       }
     }
   }
   
-  /* Interface  Styles */
-  .interface {
+  .submit {
     display: flex;
-    flex-direction: column;
+    justify-content: space-evenly;
+    width: stretch;
+  }
+  
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 10px;
+    
     label {
-      text-transform: uppercase;
-      font-size: 0.75rem;
+      position: relative;
+      display: inline-flex;
+      width: 49%;
+      margin-bottom: 10px;
+      border-radius: 5px;
+
       p {
-        display: inline-block;
-        padding: 3px 7px;
-        font-weight: bold;
+        position: absolute;
+        top: -8px;
+        left: 10px;
+        font-size: 12px;
+        padding: 0 5px;
+        border-radius: 5px;
+        background: #FFF;
       }
-      &[data-type="text"] {
-        margin-bottom: 15px;
+
+      textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        border: 1px solid #4ea5e3;
+        border-radius: 5px;
+        box-shadow: 0 0 1px 1px transparent;
+        resize: none;
+        transition: all .1s ease-in-out;
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 1px 1px #3c8bc2;
+          transition: all .3s ease-in-out;
+        }
       }
     }
-    input[type="text"] {
-      display:block;
+
+    input {
       width: stretch;
-      height: 2rem;
-      padding-left: 7px;
-      line-height: 2rem;
-      font-size: 1rem;
-    }
-    textarea {
-      display: block;
-      width: stretch;
-      height: 100px;
-      padding: 5px;
-      resize: none;
-    }
-    button {
-      width: fit-content;
-      color: inherit;
-      font-family: inherit;
-      font-weight: 700;
-      padding: 5px 7px;
-      text-transform: uppercase;
-      cursor: pointer;
+      padding: 10px;
+      border: 1px solid #4ea5e3;
+      border-radius: 5px;
+      box-shadow: 0 0 1px 1px transparent;
+      transition: all .1s ease-in-out;
+      
       &:focus {
         outline: none;
+        box-shadow: 0 0 1px 1px #3c8bc2;
+        transition: all .3s ease-in-out;
+      }
+      :invalid {
+        box-shadow: 0 0 1px 1px red;
+        transition: all .3s ease-in-out;
       }
     }
-    .submit {
+    
+    button {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
-      width: stretch;
-      margin: 20px 0;
+      width: 100px;
+      padding: 10px 0;
+      border: 1px solid #3c8bc2;
+      cursor: pointer;
+      background: #FFF;
+      transition: all .3s ease-in-out;
+      
+      &:hover {
+        color: #FFF;
+        background: #3c8bc2;
+        transition: all .3s ease-in-out;
+      }
     }
   }
   
-  // Theme styles
+  /* Light Theme */
   &.light {
-    background: #FFFFFF;
-    transition: background .3s ease-out;
-    .header {
-      color: #FFFFFF;
-      background: #238fdb;
-      transition: background .3s ease-out;
-    }
-    
-    .app-options {
-      i {
-        background: rgba(255,255,255, 0);
-        &:hover {
-          background: rgba(255,255,255,0.15);
-        }
-      }
-      .panel {
-        color: #000000;
-        background: #FFFFFF;
-        border-left: 5px solid #22BCF7;
-        .input-slider {
-          background: #333;
-          .input-on {
-            color: #26ca28;
-          }
-          .input-off {
-            color: #ff1919;
-          }
-          .input-slider-bar {
-            background: #ddd;
-            &.on {
-              background: #26ca28;
-            }
-          }
-        }
-      }
-      &.expand {
-        i {
-          background: rgba(255,255,255,0.15);
-        }
-      }
-    }
-    
-    .interface {
-      border-left: 1px solid #238fdb;
-      border-bottom: 1px solid #238fdb;
-      border-right: 1px solid #238fdb;
-      label {
-        color: #FFFFFF;
-        border-top: 1px solid #DDDDDD;
-        background: #3c8bc2;
-        p {
-          border-right: 1px solid #CCCCCC;
-        }
-      }
-      input {
-        color: #FFFFFF;
-        background: rgba(0,0,0,0.2);
-        border: none;
-      }
-      textarea {
-        color: #FFFFFF;
-        border: none;
-        background: rgba(0,0,0,0.2);
-      }
-      button {
-        color: #3c8bc2;
-        background: transparent;
-        border: 2px solid #3c8bc2;
-        border-radius: 5px;
-          transition: all .1s ease-out;
-        &:hover {
-          background: #3c8bc2;
-          color: #FFFFFF;
-          transition: all .25s ease-out;
-        }
-      }
-    }
-  }
-  
-  // Dark Theme
-  &.dark {
-    background: #2D333B;
-    transition: background .3s ease-out;
-    .header {
-      color: #FFFFFF;
-      background: #306F9B;
-      transition: background .3s ease-out;
-    }
-    
-    .app-options {
-      i {
-        background: rgba(255,255,255, 0);
-        &:hover {
-          background: rgba(255,255,255,0.15);
-        }
-      }
-      .panel {
-        color: #FFFFFF;
-        background: #245477;
-        border-left: 5px solid #22BCF7;
-        .input-slider {
-          background: #333;
-          .input-on {
-            color: #26ca28;
-          }
-          .input-off {
-            color: #ff1919;
-          }
-          .input-slider-bar {
-            background: #ddd;
-            &.on {
-              background: #26ca28;
-            }
-          }
-        }
-      }
-      &.expand {
-        i {
-          background: rgba(255,255,255,0.15);
-        }
-      }
-    }
-    
-    .interface {
-      border-left: 1px solid #238fdb;
-      border-bottom: 1px solid #238fdb;
-      border-right: 1px solid #238fdb;
-      background: #2D333B;
-      label {
-        color: #FFFFFF;
-        border-top: 1px solid #DDDDDD;
-        p {
-          border-right: 1px solid #CCCCCC;
-        }
-      }
-      input {
-        color: #FFFFFF;
-        background: rgba(0,0,0,0.35);
-        border: none;
-      }
-      textarea {
-        color: #FFFFFF;
-        border: none;
-        background: rgba(0,0,0,0.35);
-      }
-      button {
-        color: #FFFFFF;
-        background: #3c8bc2;
-        border: 2px solid #3c8bc2;
-        border-radius: 5px;
-          transition: all .1s ease-out;
-        &:hover {
-          background: transparent;
-          color: #FFFFFF;
-          transition: all .25s ease-out;
-        }
-      }
-    }
+    border-top: 3px solid #3c8bc2;
   }
 }
